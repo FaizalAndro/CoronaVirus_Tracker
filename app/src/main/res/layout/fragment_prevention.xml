@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright 2020 FAIZAL.DEV. All rights reserved.
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.Prevention">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+
+        <!-- TODO: Update blank fragment layout -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="230dp"
+                android:scaleType="fitStart"
+                android:src="@drawable/prevention" />
+
+
+
+
+            <TextView
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
+                android:layout_height="match_parent"
+                android:text="To prevent infection and to slow transmission of COVID-19, do the following:\n\n 1. Wash your hands regularly with soap and water, or clean them with alcohol-based hand rub.\n\n2. Maintain at least 1 metre distance between you and people coughing or sneezing.\n\n3. Avoid touching your face.\n\n4. Cover your mouth and nose when coughing or sneezing.\n\n5. Stay home if you feel unwell.\n\n6. Refrain from smoking and other activities that weaken the lungs.\n\n7. Practice physical distancing by avoiding unnecessary travel and staying away from large groups of people." />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_width="match_parent"
+                android:typeface="serif"
+                android:layout_marginBottom="20dp"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:layout_height="match_parent"
+                android:text="Source:WHO.int" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

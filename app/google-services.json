@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "664516730218",
+    "firebase_url": "https://corona-77a35.firebaseio.com",
+    "project_id": "corona-77a35",
+    "storage_bucket": "corona-77a35.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:664516730218:android:63e4fd049d227905141913",
+        "android_client_info": {
+          "package_name": "com.faizal.coronavirustracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "664516730218-ejef3q9uahonabsl8e7t89qqm9425bqe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdiOEVhHrLNLmd7TU_5WdUKUnemzdV3CM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "664516730218-ejef3q9uahonabsl8e7t89qqm9425bqe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
