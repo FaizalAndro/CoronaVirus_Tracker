@@ -47,7 +47,7 @@ import java.util.List;
 
 public class AllCountries extends AppCompatActivity implements SearchView.OnQueryTextListener{
 
-    private static final String URL_DATA = "https://corona.lmao.ninja/countries";
+    private static final String URL_DATA = "https://corona.lmao.ninja/v2/countries";
     private RecyclerView recyclerView;
     MyAdapter adapter;
 
