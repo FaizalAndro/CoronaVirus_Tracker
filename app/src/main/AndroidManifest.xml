@@ -1,17 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright 2020 FAIZAL.DEV. All rights reserved.
-  ~ Licensed under the Apache License, Version 2.0 (the "License");
-  ~ you may not use this file except in compliance with the License.
-  ~ You may obtain a copy of the License at
-  ~ http://www.apache.org/licenses/LICENSE-2.0
-  ~ Unless required by applicable law or agreed to in writing, software
-  ~ distributed under the License is distributed on an "AS IS" BASIS,
-  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  ~ See the License for the specific language governing permissions and
-  ~ limitations under the License.
-  -->
-
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.faizal.coronavirustracker">
@@ -22,61 +9,77 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:launchMode="singleTop"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:launchMode="singleTop"
         android:theme="@style/AppTheme">
-        <activity android:name=".About" android:label="About">
-
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".About" />
-        </activity>
-        <activity android:name=".Helpline" android:label="Helpline">
-
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Helpline" />
-        </activity>
-        <activity android:name=".Updates" android:label="All Updates">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Updates" />
-        </activity>
-        <activity android:name=".MythsBust" android:label="Myths Bust">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MythsBust" />
-        </activity>
-        <activity android:name=".Symptoms" android:label="Symptoms">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Symptoms" />
-        </activity>
-        <activity android:name=".Covid" android:label="Covid-19">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Covid" />
-        </activity>
-        <activity android:name=".StatesActivity" android:label="State of India">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".StatesActivity" />
-        </activity>
-        <activity android:name=".AllCountries" android:label="All Countries">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".AllCountries" />
-        </activity>
-        <activity android:name=".MainActivity" android:theme="@style/BlueActivityTheme">
+        <activity android:name=".Splash" android:theme="@style/BlueActivityTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
+        </activity>
+        <activity
+            android:name=".About"
+            android:label="About">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".About" />
+        </activity>
+        <activity
+            android:name=".Helpline"
+            android:label="Helpline">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Helpline" />
+        </activity>
+        <activity
+            android:name=".Updates"
+            android:label="All Updates">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Updates" />
+        </activity>
+        <activity
+            android:name=".MythsBust"
+            android:label="Myths Bust">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MythsBust" />
+        </activity>
+        <activity
+            android:name=".Symptoms"
+            android:label="Symptoms">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Symptoms" />
+        </activity>
+        <activity
+            android:name=".Covid"
+            android:label="Covid-19">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Covid" />
+        </activity>
+        <activity
+            android:name=".StatesActivity"
+            android:label="State of India">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".StatesActivity" />
+        </activity>
+        <activity
+            android:name=".AllCountries"
+            android:label="All Countries">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".AllCountries" />
+        </activity>
+        <activity android:name=".MainActivity">
 
         </activity>
+
         <service
             android:name=".MyFirebaseMessagingService"
             android:exported="false">
@@ -84,7 +87,6 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
     </application>
 
 </manifest>

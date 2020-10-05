@@ -14,33 +14,43 @@
 package com.faizal.coronavirustracker;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import com.google.firebase.messaging.FirebaseMessaging;
 
+import org.eazegraph.lib.charts.PieChart;
+import org.eazegraph.lib.models.PieModel;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
     TextView cases, tcases, death, tdeath, recover;
-    TextView casesW, deathW, recoverW;
-    RequestQueue requestQueue, requestQueue1;
+    TextView casesW, TcasesW, deathW, TdeathW, recoverW, affectedCountries, critical, active;
+    RequestQueue requestQueue;
+
+    PieChart pieChart;
+
+    SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +62,19 @@ public class MainActivity extends AppCompatActivity {
         death = findViewById(R.id.death);
         tdeath = findViewById(R.id.tdeath);
         recover = findViewById(R.id.recover);
+        pieChart = findViewById(R.id.piechart);
         //Worldwide
-        casesW = findViewById(R.id.casesW);
-        deathW = findViewById(R.id.deathW);
-        recoverW = findViewById(R.id.recoverW);
+        casesW = findViewById(R.id.tvCases);
+        recoverW = findViewById(R.id.tvRecovery);
+        critical = findViewById(R.id.tvCritical);
+        active = findViewById(R.id.tvActive);
+        deathW = findViewById(R.id.tvDeath);
+        TcasesW = findViewById(R.id.tvTodayCases);
+        TdeathW = findViewById(R.id.tvTodayDeaths);
+        affectedCountries = findViewById(R.id.tvCountries);
+
+        swipeRefreshLayout = findViewById(R.id.swipe);
+
 
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Fetching Data...");
@@ -73,7 +92,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(true);
+                doYourUpdate();
+            }
+        });
 
         requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "https://corona.lmao.ninja/v2/countries/india", null, new Response.Listener<JSONObject>() {
@@ -110,20 +135,49 @@ public class MainActivity extends AppCompatActivity {
         requestQueue.add(jsonObjectRequest);
 
 
-        requestQueue1 = Volley.newRequestQueue(this);
-        JsonObjectRequest jsonObjectRequest1 = new JsonObjectRequest(Request.Method.GET, "https://corona.lmao.ninja/v2/all", null, new Response.Listener<JSONObject>() {
+        //requestQueue1 = Volley.newRequestQueue(this);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, "https://corona.lmao.ninja/v2/all", new Response.Listener<String>() {
             @Override
-            public void onResponse(JSONObject response) {
+            public void onResponse(String response) {
                 try {
+                    JSONObject jsonObject = new JSONObject(response.toString());
 
-                    String casesWstr =  response.getString("cases");
-                    String deathsWStr =  response.getString("deaths");
-                    String recoveryWStr =  response.getString("recovered");
+                    casesW.setText(jsonObject.getString("cases"));
+                    deathW.setText(jsonObject.getString("deaths"));
+                    recoverW.setText(jsonObject.getString("recovered"));
+                    critical.setText(jsonObject.getString("critical"));
+                    active.setText(jsonObject.getString("active"));
+                    TcasesW.setText(jsonObject.getString("todayCases"));
+                    TdeathW.setText(jsonObject.getString("todayDeaths"));
+                    affectedCountries.setText(jsonObject.getString("affectedCountries"));
 
-                    casesW.setText(casesWstr);
-                    deathW.setText(deathsWStr);
-                    recoverW.setText(recoveryWStr);
+                        pieChart.addPieSlice(
+                                new PieModel(
+                                        "Cases",
+                                        Integer.parseInt(casesW.getText().toString()),
+                                        Color.parseColor("#FFA726")));
+                        pieChart.addPieSlice(
+                                new PieModel(
+                                        "Recovered",
+                                        Integer.parseInt(recoverW.getText().toString()),
+                                        Color.parseColor("#66BB6A")));
+                        pieChart.addPieSlice(
+                            new PieModel(
+                                    "Death",
+                                    Integer.parseInt(deathW.getText().toString()),
+                                    Color.parseColor("#EF5350")));
+                    pieChart.addPieSlice(
+                            new PieModel(
+                                    "Active",
+                                    Integer.parseInt(deathW.getText().toString()),
+                                    Color.parseColor("#29B6F6")));
+                        pieChart.startAnimation();
+
+
+
+
                     progressDialog.dismiss();
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -132,14 +186,18 @@ public class MainActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("TAG", "Something went wrong");
+
             }
         });
-        requestQueue.add(jsonObjectRequest1);
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
 
 
     }
-
+    private void doYourUpdate() {
+        // TODO implement a refresh
+        swipeRefreshLayout.setRefreshing(false); // Disables the refresh icon
+    }
     public void allCountries(View view) {
         startActivity(new Intent(getApplicationContext(), AllCountries.class));
     }

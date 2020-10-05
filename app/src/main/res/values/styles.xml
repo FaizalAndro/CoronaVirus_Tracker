@@ -22,6 +22,7 @@
     </style>
 
     <style name="AppTheme1" parent="Theme.AppCompat.Light.NoActionBar">
+        @style/Theme.AppCompat.Light.NoTitleBar.Fullscreen
         <!-- Your application theme -->
     </style>
 

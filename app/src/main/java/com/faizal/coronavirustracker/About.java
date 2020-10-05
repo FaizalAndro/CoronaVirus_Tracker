@@ -39,8 +39,7 @@ public class About extends AppCompatActivity {
         fancyAboutPage.setAppName("About This App");
         fancyAboutPage.setVersionNameAsAppSubTitle("1.0.1");
         fancyAboutPage.setAppDescription("This app built for providing all live updates of CORONA VIRUS.\n\n" +
-                "Major motive of this app to spread only true facts and any related news!\n\n"+
-                "As per recent announcement by our P.M for lockdown in thier home, we also requested to all the people to quarantine yourself at your home and STAY HEALTHY AND SAFE.");
+                "Major motive of this app to spread only true facts and any related news!");
         fancyAboutPage.addEmailLink("faizalkhan8130@gmail.com");     //Add your email id
         fancyAboutPage.addFacebookLink("https://www.facebook.com/FaizalAndro");  //Add your facebook address url
         fancyAboutPage.addGitHubLink("https://github.com/faizalAndro");
